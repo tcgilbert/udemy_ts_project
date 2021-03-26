@@ -24,6 +24,8 @@ const App = () => {
     const onClick = async () => {
         if (!ref.current) return;
 
+        iframe.current.srcdoc = html;
+
         const result = await ref.current.build({
             entryPoints: ["index.js"],
             bundle: true,
@@ -56,6 +58,7 @@ const App = () => {
                     } catch (err) {
                         const root = document.getElementById("root");
                         root.innerHTML = '<div style="color: red;"><h4>Runtime Error</h4>' + err + '</div>'
+                        throw err;
                     }
                     
                 }, false);
