@@ -3,6 +3,7 @@ import ReactDOM from "react-dom";
 import { useState, useEffect, useRef } from "react";
 import { unpkgPathPlugin } from "./plugins/unpkg-path-plugin";
 import { fetchPlugin } from "./plugins/fetch-plugin";
+import CodeEditor from "./components/CodeEditor";
 
 const App = () => {
     const [input, setInput] = useState("");
@@ -36,7 +37,6 @@ const App = () => {
             },
         });
 
-        // setCode(result.outputFiles[0].text);
         iframe.current.contentWindow.postMessage(
             result.outputFiles[0].text,
             "*"
@@ -68,6 +68,7 @@ const App = () => {
 
     return (
         <div>
+            <CodeEditor />
             <textarea
                 value={input}
                 onChange={(e) => setInput(e.target.value)}
